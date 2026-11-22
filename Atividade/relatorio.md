@@ -45,19 +45,19 @@ Nesse passo, as informações são inseridas e o `crud.py` realiza o cadastro no
 
 Depois, o sistema mostra que a vaga foi cadastrada e informa seu ID.
 
-![Cadastro da primeira vaga](../imagens/passo_1.png)
+![Cadastro da primeira vaga](../imagens/Passo_1_cadastro%201.png)
 
 ### Passo 2 — Cadastro da segunda vaga
 
 Nesse passo, as informações da segunda vaga são inseridas. O sistema utiliza novamente as funções `ler_dados()`, `cadastrar()` e `crud.criar_vaga()` para armazenar os dados e mostrar a confirmação do cadastro com seu ID.
 
-![Cadastro da segunda vaga](../imagens/passo_2.png)
+![Cadastro da segunda vaga](../imagens/Passo_2_cadastro%20vaga%202.png)
 
 ### Passo 3 — Listagem das vagas
 
 Nesse passo, o sistema mostra as vagas cadastradas por meio das funções `listar()` e `crud.listar_vagas()`, que utilizam um comando `SELECT` para buscar as informações e organizá-las pelo ID em ordem crescente.
 
-![Listagem das vagas](../imagens/passo_3.png)
+![Listagem das vagas](../imagens/Passo_3_listagem.png)
 
 ### Passo 4 — Atualização de uma vaga
 
@@ -67,7 +67,7 @@ Para realizar essa operação, o sistema utilizará as funções `atualizar()`, 
 
 Após a atualização, o sistema exibirá a mensagem "Vaga atualizada.". Podemos conferir as alterações escolhendo a opção 2 (Listar).
 
-![Atualização de uma vaga](../imagens/passo_4.png)
+![Atualização de uma vaga](../imagens/Passo_4_Atualiza%C3%A7%C3%A3o%20da%20vaga%20de%20id%201%20e%20a%20listagem%20de%20como%20ficou%20depois%20da%20altera%C3%A7%C3%A3o.png)
 
 ### Passo 5 — Remoção de uma vaga
 
@@ -75,7 +75,7 @@ Nesse passo, escolheremos a opção 5 (Remover), que solicitará o ID da vaga qu
 
 Depois da remoção, a vaga não aparecerá mais na listagem.
 
-![Remoção de uma vaga](../imagens/passo_5.png)
+![Remoção de uma vaga](../imagens/Passo_5_removendo%20a%20vaga%20com%20id%202%20e%20mostrando%20depois.png)
 
 ---
 
