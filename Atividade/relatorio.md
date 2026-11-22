@@ -67,7 +67,7 @@ Para realizar essa operação, o sistema utilizará as funções `atualizar()`, 
 
 Após a atualização, o sistema exibirá a mensagem "Vaga atualizada.". Podemos conferir as alterações escolhendo a opção 2 (Listar).
 
-![Atualização de uma vaga](../imagens/Passo_4_Atualizacao%20da%20vaga%20de%20id%201%20e%20a%20listagem%20de%20como%20ficou%20depois%20da%20alteracao.png)
+![Atualização de uma vaga](../imagens/Passo_4_Atualiza%C3%A7%C3%A3o%20da%20vaga%20de%20id%201%20e%20a%20listagem%20de%20como%20ficou%20depois%20da%20altera%C3%A7%C3%A3o.png)
 
 ### Passo 5 — Remoção de uma vaga
 
