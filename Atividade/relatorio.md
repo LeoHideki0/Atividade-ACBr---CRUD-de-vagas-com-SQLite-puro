@@ -15,9 +15,11 @@ CRUD é um conjunto de operações utilizadas para manipular informações em um
 
 ### 1.2 Qual é o caminho que um dado percorre quando o usuário cadastra uma vaga, do menu no terminal até o arquivo `vagas.db`?
 
-Quando o usuário escolhe a opção de cadastrar uma vaga, o sistema executa a função `cadastrar()`, que chama `ler_dados()` para receber as informações digitadas pelo usuário por meio dos inputs. Depois de receber essas informações, o sistema acessa a função `criar_vaga()`, localizada no `crud.py`, que permite inserir uma nova linha na tabela de acordo com os critérios definidos no `schema.sql`.
+Quando o usuário escolhe a opção de cadastrar uma vaga, o sistema executa a função `cadastrar()`, que chama `ler_dados()` para receber as informações digitadas pelo usuário por meio dos inputs.
 
-O ID é gerado automaticamente pelo SQLite por meio do `AUTOINCREMENT`. Após a criação da linha, as informações ficam armazenadas no banco de dados `vagas.db`.
+Depois de receber essas informações, a função `cadastrar()` chama `crud.criar_vaga()`, localizada no arquivo `crud.py`. Essa função executa um comando `INSERT` para inserir uma nova linha na tabela `vaga`, respeitando as regras definidas no arquivo `schema.sql`.
+
+O ID é gerado automaticamente pelo SQLite por meio do `AUTOINCREMENT`. Após a execução do comando e a confirmação com `commit()`, as informações ficam armazenadas no banco de dados `vagas.db`.
 
 ### 1.3 Qual é o papel de cada arquivo: `app.py`, `crud.py` e os scripts em `sql/`?
 
@@ -25,7 +27,7 @@ O **app.py** é responsável por apresentar as opções ao usuário e executar a
 
 O **crud.py** contém as funções responsáveis por realizar as operações no banco de dados, como cadastrar novas vagas, listar, consultar, atualizar e remover vagas, utilizando as operações CRUD (Create, Read, Update e Delete).
 
-Os **scripts SQL** são responsáveis por definir a estrutura do banco de dados, criar tabelas, estabelecer restrições para os dados inseridos e executar comandos SQL. Por exemplo, o `schema.sql` define as características da tabela e utiliza o `AUTOINCREMENT` para gerar automaticamente o ID de cada vaga.
+Os **scripts SQL** são responsáveis por definir a estrutura do banco de dados, criar tabelas, estabelecer restrições para os dados inseridos e fornecer comandos SQL para manipular os dados. Por exemplo, o `schema.sql` define as características da tabela e utiliza o `AUTOINCREMENT` para gerar automaticamente o ID de cada vaga.
 
 ---
 
@@ -39,21 +41,23 @@ python src/app.py
 
 ### Passo 1 — Cadastro da primeira vaga
 
-Nesse passo, as informações são inseridas e o `crud.py`, junto com os scripts SQL, permite armazenar os dados recebidos. São utilizadas as funções `ler_dados()`, `cadastrar()` e `crud.criar_vaga()`. Depois, o sistema mostra que a vaga foi cadastrada e informa seu ID.
+Nesse passo, as informações são inseridas e o `crud.py` realiza o cadastro no banco de dados. São utilizadas as funções `ler_dados()`, `cadastrar()` e `crud.criar_vaga()`.
 
-![Cadastro da primeira vaga](imagens/passo_1.png)
+Depois, o sistema mostra que a vaga foi cadastrada e informa seu ID.
+
+![Cadastro da primeira vaga](./imagens/passo_1.png)
 
 ### Passo 2 — Cadastro da segunda vaga
 
 Nesse passo, as informações da segunda vaga são inseridas. O sistema utiliza novamente as funções `ler_dados()`, `cadastrar()` e `crud.criar_vaga()` para armazenar os dados e mostrar a confirmação do cadastro com seu ID.
 
-![Cadastro da segunda vaga](imagens/passo_2.png)
+![Cadastro da segunda vaga](./imagens/passo_2.png)
 
 ### Passo 3 — Listagem das vagas
 
-Nesse passo, o sistema mostra as vagas cadastradas por meio das funções `listar()` e `crud.listar_vagas()`, que utilizam um comando `SELECT` para buscar as informações e organizá-las pelo ID.
+Nesse passo, o sistema mostra as vagas cadastradas por meio das funções `listar()` e `crud.listar_vagas()`, que utilizam um comando `SELECT` para buscar as informações e organizá-las pelo ID em ordem crescente.
 
-![Listagem das vagas](imagens/passo_3.png)
+![Listagem das vagas](./imagens/passo_3.png)
 
 ### Passo 4 — Atualização de uma vaga
 
@@ -63,7 +67,7 @@ Para realizar essa operação, o sistema utilizará as funções `atualizar()`, 
 
 Após a atualização, o sistema exibirá a mensagem "Vaga atualizada.". Podemos conferir as alterações escolhendo a opção 2 (Listar).
 
-![Atualização de uma vaga](imagens/passo_4.png)
+![Atualização de uma vaga](./imagens/passo_4.png)
 
 ### Passo 5 — Remoção de uma vaga
 
@@ -71,7 +75,7 @@ Nesse passo, escolheremos a opção 5 (Remover), que solicitará o ID da vaga qu
 
 Depois da remoção, a vaga não aparecerá mais na listagem.
 
-![Remoção de uma vaga](imagens/passo_5.png)
+![Remoção de uma vaga](./imagens/passo_5.png)
 
 ---
 
@@ -99,13 +103,15 @@ return conexao.execute(sql).fetchall()
 
 - **conexao:** representa a conexão com o banco de dados SQLite.
 - **execute(sql):** executa o comando SQL armazenado na variável `sql`.
-- **fetchall():** retorna todas as vagas encontradas.
+- **fetchall():** retorna todas as linhas encontradas na consulta, em uma lista de resultados.
 
 ### 3.2 Por que os valores são passados com o marcador `?` em vez de serem colocados diretamente no texto do SQL?
 
 A função `listar_vagas()` não utiliza o marcador `?`, pois sua consulta não recebe um valor variável. Porém, outras funções do projeto, como `criar_vaga()`, `buscar_vaga()`, `atualizar_vaga()` e `remover_vaga()`, utilizam esse marcador quando precisam receber valores.
 
-O `?` funciona como um espaço reservado (*placeholder*). Ele é utilizado porque o valor que ficará naquela posição pode variar conforme o que o usuário digitar. Além disso, passar os valores separadamente ajuda a proteger o sistema contra SQL Injection.
+O `?` funciona como um espaço reservado (*placeholder*). Ele é utilizado porque o valor que ficará naquela posição pode variar conforme o que o usuário digitar.
+
+Além disso, passar os valores separadamente ajuda a proteger o sistema contra SQL Injection e evita problemas na montagem dos comandos SQL.
 
 ### 3.3 O que a função devolve e como `app.py` usa esse retorno?
 
