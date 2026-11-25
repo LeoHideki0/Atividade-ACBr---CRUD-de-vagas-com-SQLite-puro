@@ -28,8 +28,11 @@ O **app.py** é responsável por apresentar as opções ao usuário e executar a
 O **crud.py** contém as funções responsáveis por realizar as operações no banco de dados, como cadastrar novas vagas, listar, consultar, atualizar e remover vagas, utilizando as operações CRUD (Create, Read, Update e Delete).
 
 Os **scripts SQL** são responsáveis por definir a estrutura do banco de dados, criar tabelas, estabelecer restrições para os dados inseridos e fornecer comandos SQL para manipular os dados. Por exemplo:
+
 `schema.sql:` Estrutura o banco de dados colocando restrições quando os dados são inseridos no banco de dados (Exemplo: auto_increment).
+
 `dados_exemplo.sql:` dados de exemplo para executar no app.py.
+
 `exercícios.sql:` Apresenta exercícios de SQL.
 
 ---
